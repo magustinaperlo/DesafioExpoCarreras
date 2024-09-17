@@ -1,6 +1,5 @@
 #interfaz muestra
 from tkinter import * 
-import FuncionesValidacion 
 
 #ventana
 ventana = Tk()
@@ -90,4 +89,3 @@ btn_trekking.grid(row=1, column=8, padx=10, pady=10)
 button = Button(ventana, text="Guardar", borderwidth=2, bg="#ffffff" ,font=('Calibri', 15))
 button.grid(row=3, column=0, padx=10, pady=20,  ipadx=40)
 
-ventana.mainloop()
