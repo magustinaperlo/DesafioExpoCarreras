@@ -6,7 +6,7 @@ ventana = Tk()
 ventana.title("Datos de preincripción a las carreras")
 ventana.geometry("1366x798")
 ventana.configure(bg="#477c94")
-ventana.resizable(False, False)
+#ventana.resizable(False, False)
 
 #marco
 frame= LabelFrame(ventana, text="Seleccione la carrera", bg="#dbc79c", font= ('Calibri', 20), borderwidth=5)
@@ -89,3 +89,4 @@ btn_trekking.grid(row=1, column=8, padx=10, pady=10)
 button = Button(ventana, text="Guardar", borderwidth=2, bg="#ffffff" ,font=('Calibri', 15))
 button.grid(row=3, column=0, padx=10, pady=20,  ipadx=40)
 
+ventana.mainloop()
