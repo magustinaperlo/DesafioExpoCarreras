@@ -3,23 +3,16 @@ import re
 from tkinter import messagebox
 
 #Validar correo electronico
-def validar_correo(correo):
+def verificar_correo():
    
+    correo = entrada_correo.get()
     # Expresión regular para validar el formato del correo electrónico
     patron = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
    
     # Comprobar si el correo cumple con el patrón
-    if re.match(patron, correo):
-        return True
-    else:
-        return False
-
-def verificar_correo():
-    correo = entrada_correo.get()
-    if validar_correo(correo):
-        messagebox.showinfo("Éxito", f"{correo} es una dirección de correo válida.")
-    else:
+    if not re.match(patron, correo):
         messagebox.showerror("Error", f"{correo} no es una dirección de correo válida.")
+        entrada_correo.delete(0, tk.END)
     
 def validar_dni(event=None):
     dni = entradadni.get()  # Obtiene el valor del Entry
