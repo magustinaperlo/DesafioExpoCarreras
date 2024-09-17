@@ -1,6 +1,6 @@
 import tkinter as tk
-import mysql.connector 
-
+import mysql.connector
+# Datos de conexión a la base de datos (reemplázalos con tus datos)
 mydb = mysql.connector.connect(
         host="127.0.0.1",
         user="AGREGAR NOMBRE", #PONER SU PROPIO USUARIO
