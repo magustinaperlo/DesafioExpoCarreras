@@ -50,7 +50,9 @@ CREATE TABLE IF NOT EXISTS `Persona` (
   `ciudad` VARCHAR(45) NOT NULL,
   `instagram` VARCHAR(45) NOT NULL,
   `id_carrera` INT NOT NULL,
-  PRIMARY KEY (`id_persona`))
+  PRIMARY KEY (`id_persona`)
+  FOREIGN KEY (`id_carreras`) references Carreras(`id_carrera`)
+  )
 ENGINE = InnoDB;
 
 SHOW WARNINGS;
