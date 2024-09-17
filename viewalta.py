@@ -14,8 +14,8 @@ from ConexionBD import *
 #ventana
 ventana = Tk()
 ventana.title("Datos de preincripción a las carreras")
-ventana.geometry("1366x798")
-ventana.configure(bg="#477c94")
+ventana.geometry("1366x768")
+ventana.configure(bg="#b39658")
 #ventana.resizable(False, False)
 
 
@@ -45,7 +45,7 @@ def insertar_persona():
         print("Registro insertado correctamente.")
 
 #marco
-frame= LabelFrame(ventana, text="Seleccione la carrera", bg="#dbc79c", font= ('Calibri', 20), borderwidth=5)
+frame= LabelFrame(ventana, text="Seleccione la carrera", bg="white", font= ('Calibri', 20), borderwidth=5)
 frame.grid(row= 0, column=0, padx=60, pady=50 )
 
 frame_datos= LabelFrame(ventana, text="Ingrese sus datos:", bg="#dbc79c", font= ('Calibri', 20), borderwidth=5)
@@ -106,22 +106,22 @@ entry_instagram.grid(row= 8, column=2, ipadx=400)
 
 
 #radio botones
-btn_software = Radiobutton(frame, text="Desarrollo de Software", variable=variable,value=1, borderwidth=2, bg="#dbc79c", font=('Calibri', 13))
+btn_software = Radiobutton(frame, text="Desarrollo de Software", variable=variable,value=1, borderwidth=2, bg="white", font=('Calibri', 13))
 btn_software.grid(row=1, column=3, padx=10, pady=10)
 
-btn_enfermeria = Radiobutton(frame, text="Enfermería",  variable=variable,value=2, borderwidth=2, bg="#dbc79c", font=('Calibri', 13))
+btn_enfermeria = Radiobutton(frame, text="Enfermería",  variable=variable,value=2, borderwidth=2, bg="white", font=('Calibri', 13))
 btn_enfermeria.grid(row=1, column=4, padx=10, pady=10)
 
-btn_disenio = Radiobutton(frame, text="Diseño de Espacios", variable=variable,value=3, borderwidth=2, bg="#dbc79c", font=('Calibri', 13))
+btn_disenio = Radiobutton(frame, text="Diseño de Espacios", variable=variable,value=3, borderwidth=2, bg="white", font=('Calibri', 13))
 btn_disenio.grid(row=1, column=5, padx=10, pady=10)
 
-btn_guia = Radiobutton(frame, text="Guía en Turismo", variable=variable,value=5, borderwidth=2, bg="#dbc79c", font=('Calibri', 13))
+btn_guia = Radiobutton(frame, text="Guía en Turismo", variable=variable,value=5, borderwidth=2, bg="white", font=('Calibri', 13))
 btn_guia.grid(row=1, column=6, padx=10, pady=10)
 
-btn_guia_turismo_hoteleria = Radiobutton(frame, text="Guía de Turismo y Hotelería", variable=variable,value=6, borderwidth=2, bg="#dbc79c", font=('Calibri', 13))
+btn_guia_turismo_hoteleria = Radiobutton(frame, text="Guía de Turismo y Hotelería", variable=variable,value=6, borderwidth=2, bg="white", font=('Calibri', 13))
 btn_guia_turismo_hoteleria.grid(row=1, column=7, padx=10, pady=10)
 
-btn_trekking = Radiobutton(frame, text="Guía de Trekking y Guía de montaña ", variable=variable, value=4, borderwidth=2, bg="#dbc79c", font=('Calibri', 13))
+btn_trekking = Radiobutton(frame, text="Guía de Trekking y Guía de montaña ", variable=variable, value=4, borderwidth=2, bg="white", font=('Calibri', 13))
 btn_trekking.grid(row=1, column=8, padx=10, pady=10)
 
 
@@ -135,7 +135,7 @@ button.grid(row=3, column=0, padx=10, pady=20,  ipadx=40)
 ventana.mainloop()
 
 =======
-btn_guardar = Button(ventana, text="Guardar", borderwidth=2, bg="#ffffff" ,font=('Calibri', 15), command=insertar_persona)
+btn_guardar = Button(ventana, text="Guardar", borderwidth=2, bg="#84c6e3" ,font=('Calibri', 15), command=insertar_persona)
 btn_guardar.grid(row=3, column=0, padx=10, pady=20,  ipadx=40)
 
 ventana.mainloop()
