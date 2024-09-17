@@ -1,17 +1,22 @@
 #interfaz muestra
 from tkinter import * 
+<<<<<<< HEAD
 from ConexionBD import *
 from FuncionesValidacion import *
 
 
 
+=======
+from FuncionesValidacion import *
+from ConexionBD import *
+>>>>>>> d742087cbff2ea51785d4f10c642dde10faab858
 
 #ventana
 ventana = Tk()
 ventana.title("Datos de preincripción a las carreras")
 ventana.geometry("1366x798")
 ventana.configure(bg="#477c94")
-ventana.resizable(False, False)
+#ventana.resizable(False, False)
 
 
 variable = tk.StringVar()
@@ -121,6 +126,7 @@ btn_trekking.grid(row=1, column=8, padx=10, pady=10)
 
 
 #botón
+<<<<<<< HEAD
 
 
 button = Button(ventana, text="Guardar", borderwidth=2, bg="#ffffff" ,font=('Calibri', 15), command= insertar_persona)
@@ -128,3 +134,9 @@ button.grid(row=3, column=0, padx=10, pady=20,  ipadx=40)
 
 ventana.mainloop()
 
+=======
+btn_guardar = Button(ventana, text="Guardar", borderwidth=2, bg="#ffffff" ,font=('Calibri', 15), command=insertar_persona)
+btn_guardar.grid(row=3, column=0, padx=10, pady=20,  ipadx=40)
+
+ventana.mainloop()
+>>>>>>> d742087cbff2ea51785d4f10c642dde10faab858
