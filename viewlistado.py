@@ -1,13 +1,17 @@
 import tkinter as tk
 from tkinter import ttk
 
+
+
+
+
 root = tk.Tk()
 root.title("Listado de personas")
 
 style = ttk.Style()  # crear objeto ttk.Style
 style.configure("BigFont.TRadiobutton", font=("Helvetica", 14))  # configurar estilo de fuente
 
-label_seleccionar_carrera = ttk.Label(root, text="SELECCIONAR CARRERA PARA FILTRAR", font=("Helvetica", 14, "bold"))
+label_seleccionar_carrera = ttk.Label(root, text="Seleccionar carrera para filtrar", font=("Calibri", 20, "bold"))
 label_seleccionar_carrera.grid(row=0, column=0, sticky="nsew", pady=(10, 0))
 
 frame_superior = tk.Frame(root, bg="gray90")

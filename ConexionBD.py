@@ -6,7 +6,7 @@ mydb = mysql.connector.connect(
     host="127.0.0.1",
     user="root",
     password="123",
-    database="nombre_de_tu_base_de_datos")
+    database="isaui")
 mycursor = mydb.cursor()
 
 def insertar_persona():

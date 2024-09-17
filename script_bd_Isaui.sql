@@ -33,5 +33,13 @@ CREATE TABLE `personas` (
 USE isaui;
 INSERT INTO carreras (nombre) VALUES ("Software"), ("Enfermeria"), ("Diseño de Espacios"), ("Guia de Trekking"), ("Guia de Turismo"), ("Turismo y Hoteleria");
 INSERT INTO personas (apellido, nombre, dni, telefono, correo, domicilio, ciudad, instagram, id_carreras) 
-VALUES ("Perez", "Jorge", "123", "3451", "ASD@", "peru", "hola", "lechuga", 2);
+VALUES ("Perez", "Jorge", "123", "3451", "ASD@", "peru", "hola", "lechuga", 2),
+("Juarez", "Jorgelina", "33546788", "345156787", "ASD@gmail.com", "peru 89", "VCP", "lechugaOk", 1),
+("Aper", "Claudia", "33546788", "345156787", "ASD@gmail.com", "peru 89", "VCP", "lechugaOk", 6),
+("Maschio", "Evelina", "33546788", "345156787", "ASD@gmail.com", "peru 89", "VCP", "lechugaOk", 4),
+("Suarez", "Julieta", "33546788", "345156787", "ASD@gmail.com", "peru 89", "VCP", "lechugaOk", 3),
+("Moreno", "Nehuen", "33546788", "345156787", "ASD@gmail.com", "peru 89", "VCP", "lechugaOk", 1),
+("Murua", "Luz", "33546788", "345156787", "ASD@gmail.com", "peru 89", "VCP", "lechugaOk", 5);
+
+
 SELECT * FROM carreras;
