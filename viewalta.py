@@ -1,5 +1,7 @@
 #interfaz muestra
 from tkinter import * 
+from FuncionesValidacion import *
+from ConexionBD import *
 
 #ventana
 ventana = Tk()
@@ -86,7 +88,7 @@ btn_trekking = Radiobutton(frame, text="Guía de Trekking y Guía de montaña ",
 btn_trekking.grid(row=1, column=8, padx=10, pady=10)
 
 #botón
-button = Button(ventana, text="Guardar", borderwidth=2, bg="#ffffff" ,font=('Calibri', 15))
-button.grid(row=3, column=0, padx=10, pady=20,  ipadx=40)
+btn_guardar = Button(ventana, text="Guardar", borderwidth=2, bg="#ffffff" ,font=('Calibri', 15), command=insertar_persona)
+btn_guardar.grid(row=3, column=0, padx=10, pady=20,  ipadx=40)
 
 ventana.mainloop()

@@ -1,5 +1,6 @@
 import tkinter as tk
 import mysql.connector
+from viewalta import *
 # Datos de conexión a la base de datos (reemplázalos con tus datos)
 mydb = mysql.connector.connect(
     #conexion Lautaro
