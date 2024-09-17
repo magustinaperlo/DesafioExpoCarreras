@@ -14,7 +14,6 @@ def validar_correo(correo):
     else:
         return False
 
-
 def verificar_correo():
     correo = entrada_correo.get()
     if validar_correo(correo):
@@ -23,19 +22,30 @@ def verificar_correo():
         messagebox.showerror("Error", f"{correo} no es una dirección de correo válida.")
     
 def validar_dni(event=None):
-    dni = vardni.get()  # Obtiene el valor del Entry
+    dni = entradadni.get()  # Obtiene el valor del Entry
     if not dni.isdigit():  # Verifica si el DNI tiene solo números
         messagebox.showerror("Error", "Solamente se aceptan dígitos")
-        vardni.delete(0, tk.END)
+        entradadni.delete(0, tk.END)
     elif len(dni) < 7 or len(dni) > 8:  # Verifica que el DNI tenga 7 u 8 dígitos
         messagebox.showerror("Error", "El número debe tener 7 u 8 dígitos")
-        vardni.delete(0, tk.END)
+        entradadni.delete(0, tk.END)
 
 def validar_telefono():
-    telefono = vartelefono.get()  
+    telefono = entradatelefono.get()  
     if not telefono.isdigit():  
         messagebox.showerror("Error", "Solamente se aceptan dígitos")
-        vartelefono.delete(0, tk.END)
+        entradatelefono.delete(0, tk.END)
     elif len(telefono) < 6 or len(telefono) > 10:
         messagebox.showerror("Error", "El número de teléfono debe tener entre 6 y 10 dígitos")
-        vartelefono.delete(0, tk.END)
+        entradatelefono.delete(0, tk.END)
+
+def aniadir_usuario():
+    usuario = entry_user.get().strip()  # Elimina espacios en blanco al principio y al final
+
+    # Verifica que no haya más de 1 espacios consecutivos
+    if not usuario or re.search(r'\s{2,}', pelicula):
+        messagebox.showwarning("Error", "La entrada no debe tener más de 2 espacios consecutivos ni estar vacía.")
+    else:
+        listbox.insert(tk.END, usuario)
+    
+    entry_user.delete(0, tk.END)
