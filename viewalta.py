@@ -1,48 +1,66 @@
 #interfaz muestra
 from tkinter import * 
-<<<<<<< HEAD
-from ConexionBD import *
-from FuncionesValidacion import *
-
-
-
-=======
 from FuncionesValidacion import *
 from ConexionBD import *
->>>>>>> d742087cbff2ea51785d4f10c642dde10faab858
 
 #ventana
 ventana = Tk()
-ventana.title("Datos de preincripción a las carreras")
+ventana.title("Formulario de contacto para ISAUI")
 ventana.geometry("1366x768")
 ventana.configure(bg="#b39658")
-#ventana.resizable(False, False)
-
+ventana.resizable(False, False)
 
 variable = tk.StringVar()
-#variable.set("1")
+
 def getSeleccionCarrera():
     carrera = variable.get()
     return carrera
 
+def getEntradasUsuario():
+        apellido = entry_apellido.get().strip()
+        nombre = entry_nombre.get().strip() 
+        dni = entry_dni.get().strip()
+        telefono = entry_telefono.get().strip()
+        correo = entry_correo.get().strip()
+        domicilio= entry_domicilio.get().strip()
+        ciudad= entry_ciudad.get().strip()
+        instagram = entry_instagram.get().strip()
+        return apellido, nombre, dni, telefono, correo, domicilio, ciudad, instagram
 
+def limpiar_campos(entries):
+    for entry in entries:
+        entry.delete(0, tk.END)
 
+def guardar_datos():
 
-def insertar_persona():
-        apellido = entry_apellido.get()
-        nombre = entry_nombre.get() # ... Obtener los valores de los demás campos
-        dni = entry_dni.get()
-        telefono = entry_telefono.get()
-        correo = entry_correo.get()
-        domicilio= entry_domicilio.get()
-        ciudad= entry_ciudad.get()
-        instagram = entry_instagram.get()
-        id_carreras = getSeleccionCarrera()
-        sql = "INSERT INTO personas (apellido, nombre, dni, telefono, correo, domicilio, ciudad,instagram,id_carreras) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)"
-        val = (apellido, nombre, dni, telefono, correo, domicilio, ciudad, instagram,id_carreras)
-        mycursor.execute(sql, val)
-        mydb.commit()
-        print("Registro insertado correctamente.")
+    carrera = getSeleccionCarrera()
+    entries = [entry_apellido, entry_nombre, entry_dni, entry_telefono, entry_correo, entry_domicilio, entry_ciudad, entry_instagram]
+    if not validar_campos_obligatorios(entries):
+        return  # Detener si los campos están vacíos
+    
+    apellido, nombre, dni, telefono, correo, domicilio, ciudad, instagram = getEntradasUsuario()
+        
+    # validaciones del archivo FuncionesValidacion
+  
+    if not verificar_correo(correo):
+        return 
+    if not validar_dni(dni):
+        return  
+    if not validar_telefono(telefono):
+        return   
+    if (messagebox.askyesno("Confirmar", "¿Desea guardar los datos?")):
+        insertar_persona(apellido, nombre, dni, telefono, correo, domicilio, ciudad, instagram,carrera)
+        limpiar_campos(entries)
+    else:
+        messagebox.showinfo("Cancelado", "No se guardaron los datos.")
+    
+def procesar_formulario():
+    apellido, nombre, dni, telefono, correo, domicilio, ciudad, instagram = getEntradasUsuario()
+    
+    if apellido and nombre and dni:  # Simple validación de que algunos campos no estén vacíos
+        insertar_persona(apellido, nombre, dni, telefono, correo, domicilio, ciudad, instagram)
+    else:
+        messagebox.showerror("Error", "Todos los campos son obligatorios")
 
 #marco
 frame= LabelFrame(ventana, text="Seleccione la carrera", bg="white", font= ('Calibri', 20), borderwidth=5)
@@ -126,17 +144,7 @@ btn_trekking.grid(row=1, column=8, padx=10, pady=10)
 
 
 #botón
-<<<<<<< HEAD
-
-
-button = Button(ventana, text="Guardar", borderwidth=2, bg="#ffffff" ,font=('Calibri', 15), command= insertar_persona)
-button.grid(row=3, column=0, padx=10, pady=20,  ipadx=40)
-
-ventana.mainloop()
-
-=======
-btn_guardar = Button(ventana, text="Guardar", borderwidth=2, bg="#84c6e3" ,font=('Calibri', 15), command=insertar_persona)
+btn_guardar = Button(ventana, text="Guardar", borderwidth=2,  bg="#ffffff" ,font=('Calibri', 15), command=guardar_datos)
 btn_guardar.grid(row=3, column=0, padx=10, pady=20,  ipadx=40)
 
 ventana.mainloop()
->>>>>>> d742087cbff2ea51785d4f10c642dde10faab858
