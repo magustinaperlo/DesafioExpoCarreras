@@ -48,7 +48,7 @@ def actualizar_treeview():
 
     personas_filtradas = cursor.fetchall()
     for persona in personas_filtradas:
-        arbol.insert("", "end", values=(persona[1], persona[2], persona[3], [c[1] for c in carreras if c[0] == persona[9]][0]))
+        arbol.insert("", "end", values=(persona[1], persona[2], persona[3], persona[4],persona[5],persona[6],persona[7],persona[8], [c[1] for c in carreras if c[0] == persona[9]][0]))
 
 # Radio buttons
 btn_todas = Radiobutton(frame, text="Todas las Carreras", variable=variable, value="0", command=actualizar_treeview, borderwidth=2, bg="white", font=('Calibri', 13))
@@ -73,7 +73,7 @@ btn_trekking = Radiobutton(frame, text="Guía de Trekking y Guía de montaña", 
 btn_trekking.grid(row=2, column=7, padx=10, pady=10)
 
 #Treeview
-arbol = ttk.Treeview(ventana, columns=("apellido", "nombre", "dni", "carrera"), show="headings")
+arbol = ttk.Treeview(ventana, columns=("apellido", "nombre", "dni", "carrera", "telefono", "domicilio", "ciudad", "correo", "instagram"), show="headings")
 arbol.grid(row=1, column=0, sticky="nsew")
 
 stilo = ttk.Style()
@@ -83,13 +83,23 @@ stilo.configure("Treeview.Heading", font=("Robot", 14))
 arbol.heading("apellido", text="Apellido")
 arbol.heading("nombre", text="Nombre")
 arbol.heading("dni", text="DNI")
+arbol.heading("telefono", text="Teléfono")
+arbol.heading("correo", text="Correo")
+arbol.heading("domicilio", text="Domicilio")
+arbol.heading("ciudad", text="Ciudad")
+arbol.heading("instagram", text="Instagrama")
 arbol.heading("carrera", text="Carrera")
 
 #Ancho de las columnas y datos centrados
-arbol.column("apellido", anchor='center', width=250)
-arbol.column("nombre", anchor='center', width=350)
-arbol.column("dni", anchor='center', width=250)
-arbol.column("carrera", anchor='center', width=250)
+arbol.column("apellido", anchor='center', width=150)
+arbol.column("nombre", anchor='center', width=150)
+arbol.column("dni", anchor='center', width=150)
+arbol.column("telefono", anchor='center', width=150)
+arbol.column("correo", anchor='center', width=150)
+arbol.column("domicilio", anchor='center', width=150)
+arbol.column("ciudad", anchor='center', width=150)
+arbol.column("instagram", anchor='center', width=150)
+arbol.column("carrera", anchor='center', width=150)
 
 #Carga los datos iniciales
 actualizar_treeview()
