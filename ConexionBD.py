@@ -2,11 +2,11 @@ import tkinter as tk
 from tkinter import messagebox
 import mysql.connector
 
-# Datos de conexión a la base de datos (reemplázalos con tus datos)
+
 mydb = mysql.connector.connect(
         host="localhost",
-        user="root", #PONER SU PROPIO USUARIO
-        password="", #PONER SU PROPIA CLAVE
+        user="",
+        password="", 
         database="isaui")
 mycursor = mydb.cursor()
 
