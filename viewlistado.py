@@ -104,5 +104,4 @@ def abrir_listado():
 
     #Carga los datos iniciales
     actualizar_treeview()
-
     ventana.mainloop()
