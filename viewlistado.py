@@ -2,6 +2,21 @@ from tkinter import *
 from tkinter import ttk
 import mysql.connector
 
+def actualizar_treeview():
+        for item in arbol.get_children():
+            arbol.delete(item)
+
+        seleccionar_carrera = variable.get()
+        if seleccionar_carrera != "0":  #Verifica que se haya seleccionado una carrera
+            cursor.execute("SELECT * FROM personas WHERE id_carreras = %s", (seleccionar_carrera))
+        else:
+            cursor.execute("SELECT * FROM personas")  #Sin filtro
+
+        personas_filtradas = cursor.fetchall()
+        for persona in personas_filtradas:
+            arbol.insert("", "end", values=(persona[1], persona[2], persona[3], persona[4],persona[5],persona[6],persona[7],persona[8], [c[1] for c in carreras if c[0] == persona[9]][0]))
+
+
 def abrir_listado():
     # Conectar a la base de datos
     cnx = mysql.connector.connect(
@@ -37,20 +52,7 @@ def abrir_listado():
     ventana.columnconfigure(0, weight=1)
 
     #Actualiza la tabla según la carrera seleccionada
-    def actualizar_treeview():
-        for item in arbol.get_children():
-            arbol.delete(item)
-
-        seleccionar_carrera = variable.get()
-        if seleccionar_carrera != "0":  #Verifica que se haya seleccionado una carrera
-            cursor.execute("SELECT * FROM personas WHERE id_carreras = %s", (seleccionar_carrera,))
-        else:
-            cursor.execute("SELECT * FROM personas")  #Sin filtro
-
-        personas_filtradas = cursor.fetchall()
-        for persona in personas_filtradas:
-            arbol.insert("", "end", values=(persona[1], persona[2], persona[3], persona[4],persona[5],persona[6],persona[7],persona[8], [c[1] for c in carreras if c[0] == persona[9]][0]))
-
+   
     # Radio buttons
     btn_todas = Radiobutton(frame, text="Todas las Carreras", variable=variable, value="0", command=actualizar_treeview, borderwidth=2, bg="white", font=('Calibri', 13))
     btn_todas.grid(row=1, column=5, padx=10, pady=10)
