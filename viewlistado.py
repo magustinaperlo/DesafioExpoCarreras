@@ -11,15 +11,15 @@ class LISTADO(Frame):
         self.pack(expand=True)
         mycursor.execute("SELECT * FROM carreras")
         self.carreras = mycursor.fetchall()
-
         mycursor.execute("SELECT * FROM personas")
         self.personas = mycursor.fetchall()
         self.interfaz()
 
     def actualizar_treeview(self):
         seleccionar_carrera = self.variable.get()
-        for item in self.arbol.get_children():
-            self.arbol.delete(item)
+        arbol = self.arbol
+        for item in arbol.get_children():
+            arbol.delete(item)
 
         if seleccionar_carrera != "0":  #Verifica que se haya seleccionado una carrera
             mycursor.execute("SELECT * FROM personas WHERE id_carreras = %s", (seleccionar_carrera))
@@ -28,7 +28,7 @@ class LISTADO(Frame):
 
         personas_filtradas = mycursor.fetchall()
         for persona in personas_filtradas:
-            self.arbol.insert("", "end", values=(persona[1], persona[2], persona[3], persona[4],persona[5],persona[6],persona[7],persona[8], [c[1] for c in self.carreras if c[0] == persona[9]][0]))
+            arbol.insert("", "end", values=(persona[1], persona[2], persona[3], persona[4],persona[5],persona[6],persona[7],persona[8], [c[1] for c in self.carreras if c[0] == persona[9]][0]))
 
     def interfaz(self):
         frame = LabelFrame(self, text="Seleccione carrera para filtrar", bg="white", font=('Calibri', 20), borderwidth=5)
@@ -43,7 +43,7 @@ class LISTADO(Frame):
         self.variable = StringVar(value="0")  
 
         # Radio buttons
-        btn_todas = Radiobutton(frame, text="Todas las Carreras", variable=self.variable, value="0", command= self.actualizar_treeview(), borderwidth=2, bg="white", font=('Calibri', 13))
+        btn_todas = Radiobutton(frame, text="Todas las Carreras", variable=self.variable, value="0", command= self.actualizar_treeview, borderwidth=2, bg="white", font=('Calibri', 13))
         btn_todas.grid(row=1, column=5, padx=10, pady=10)
 
         btn_software = Radiobutton(frame, text="Desarrollo de Software", variable=self.variable, value="1", command=self.actualizar_treeview, borderwidth=2, bg="white", font=('Calibri', 13))
@@ -94,8 +94,7 @@ class LISTADO(Frame):
         self.arbol.column("carrera", anchor='center', width=150)
 
         #Carga los datos iniciales
-        self.actualizar_treeview(arbol)
-
+        self.actualizar_treeview()
 
 def abrir_listado():
     ventana = Tk()
