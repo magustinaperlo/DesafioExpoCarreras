@@ -14,16 +14,16 @@ def verificar_correo(correo):
 def validar_dni(dni):
     
     if not dni.isdigit():  # Verifica si el DNI tiene solo números
-        messagebox.showerror("Error", "Solamente se aceptan dígitos")
+        messagebox.showerror("Error", "Solamente se aceptan dígitos en el campo de DNI.")
         return False
     elif len(dni) < 7 or len(dni) > 8:  # Verifica que el DNI tenga 7 u 8 dígitos
-        messagebox.showerror("Error", "El número debe tener 7 u 8 dígitos")
+        messagebox.showerror("Error", "El DNI debe tener 7 u 8 dígitos")
         return   False   
     return True
 
 def validar_telefono(telefono):
     if not telefono.isdigit():  
-        messagebox.showerror("Error", "Solamente se aceptan dígitos")
+        messagebox.showerror("Error", "Solamente se aceptan dígitos para el teléfono.")
         return False
     elif len(telefono) < 6 or len(telefono) > 10:
         messagebox.showerror("Error", "El número de teléfono debe tener entre 6 y 10 dígitos")
