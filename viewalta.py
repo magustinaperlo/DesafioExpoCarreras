@@ -9,7 +9,8 @@ class abrir_alta(Frame):
         self.master = master
         self.pack_propagate(False) 
         self.pack(expand=True)
-        self.menu()
+        self.interfaz()
+        self.fin = 0
 
     def getSeleccionCarrera(self):
         carrera = self.variable.get()
@@ -59,15 +60,19 @@ class abrir_alta(Frame):
             insertar_persona(apellido, nombre, dni, telefono, correo, domicilio, ciudad, instagram)
         else:
             messagebox.showerror("Error", "Todos los campos son obligatorios")
+    
+    def on_closing(self):
+        self.fin = 1    
+        self.master.destroy()
 
-    def menu(self):
+    def interfaz(self):
         self.variable = tk.StringVar()
         #marco
         frame= LabelFrame(self, text="Seleccione la carrera", bg="white", font= ('Calibri', 20), borderwidth=5)
         frame.grid(row= 0, column=0, padx=60, pady=50 )
 
         frame_datos= LabelFrame(self, text="Ingrese sus datos:", bg="#dbc79c", font= ('Calibri', 20), borderwidth=5)
-        frame_datos.grid(row= 1, column=0, columnspan=9, ipadx=100, ipady=10)
+        frame_datos.grid(row= 1, column=0, columnspan=9, ipadx= 50, ipady=10)
 
         #etiquetas 
 
@@ -142,12 +147,19 @@ class abrir_alta(Frame):
 
 
         #botón
-        btn_guardar = Button(self, text="Guardar", borderwidth=2,  bg="#ffffff" ,font=('Calibri', 15), command=self.guardar_datos)
-        btn_guardar.grid(row=3, column=0, padx=10, pady=20,  ipadx=40)
+        botones = Frame(self, bg="#b39658")
+        botones.grid(row=3, column=0, pady= 10)
 
+        btn_guardar = Button(botones, text="Guardar", borderwidth=2,  bg="#ffffff" ,font=('Calibri', 15), command=self.guardar_datos)
+        btn_guardar.grid(row=0, column=1, padx=20, pady=20,  ipadx=40)
 
+        btn_volver = Button(botones, text="Volver", borderwidth=2,  bg="#ffffff" ,font=('Calibri', 15), command= self.on_closing)
+        btn_volver.grid(row=0, column=2, padx=20, pady=20, ipadx=40)
+
+"""
 ventana = Tk()
 ventana.wm_title("Formulario de contacto para ISAUI")
 ventana.wm_resizable(0,0)
 entradas = abrir_alta(ventana)
 entradas.mainloop()
+"""

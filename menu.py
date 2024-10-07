@@ -12,12 +12,16 @@ class MENU(Frame):
         self.ventana_menu()
 
     def comando_alta(self):
-        self.master.destroy()
-        ventana = Tk()
-        #ventana = Toplevel(self.master)
+        self.master.withdraw()
+        ventana = Toplevel(self.master)
         ventana.wm_title("Formulario de contacto para ISAUI")
         ventana.wm_resizable(0,0)
         entradas = abrir_alta(ventana)
+        def on_closing():
+            ventana.destroy()
+            self.master.deiconify()  # Muestra la ventana principal nuevamente
+    
+        ventana.protocol("WM_DELETE_WINDOW", on_closing)
         entradas.mainloop()
 
     def comando_lista(self):
