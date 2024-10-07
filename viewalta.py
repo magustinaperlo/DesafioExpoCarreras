@@ -54,7 +54,7 @@ class abrir_alta(Frame):
             messagebox.showinfo("Cancelado", "No se guardaron los datos.")
         
     def procesar_formulario(self):
-        apellido, nombre, dni, telefono, correo, domicilio, ciudad, instagram = getEntradasUsuario()
+        apellido, nombre, dni, telefono, correo, domicilio, ciudad, instagram = self.getEntradasUsuario()
         
         if apellido and nombre and dni:  # Simple validación de que algunos campos no estén vacíos
             insertar_persona(apellido, nombre, dni, telefono, correo, domicilio, ciudad, instagram)

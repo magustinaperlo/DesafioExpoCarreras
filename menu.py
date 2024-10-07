@@ -25,7 +25,18 @@ class MENU(Frame):
         entradas.mainloop()
 
     def comando_lista(self):
-        abrir_listado()
+        self.master.withdraw()
+        ventana = Toplevel(self.master)
+        ventana.wm_title("Listado de personas")
+        ventana.wm_resizable(0,0)
+        entradas = LISTADO(ventana)
+        def on_closing():
+            ventana.destroy()
+            self.master.deiconify()  # Muestra la ventana principal nuevamente
+    
+        ventana.protocol("WM_DELETE_WINDOW", on_closing)
+        entradas.mainloop()
+        #abrir_listado()
 
     def ventana_menu(self):
         frame_menu = LabelFrame(self, text="Menú", bg="white", font=('Calibri', 20), borderwidth=5)
