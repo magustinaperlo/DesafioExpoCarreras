@@ -78,6 +78,11 @@ def obtener_datos(carrera_seleccionada=None):
         arbol.insert("", "end", values=fila)
 
 # Botón para actualizar los datos manualmente
+
+
+btn_volver = tk.Button(root, text="Volver", borderwidth=2,  bg="#ffffff" ,font=('Calibri', 15), command=root.destroy)
+btn_volver.grid(row=4, column=0, padx=10, pady=20,  ipadx=40)
+
 btn_actualizar = tk.Button(root, text="Actualizar", command=lambda: obtener_datos(variable_de_filtro_carrera.get()))
 btn_actualizar.grid(row=3, column=0, pady=10)
 

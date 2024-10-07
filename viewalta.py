@@ -6,7 +6,7 @@ from ConexionBD import *
 #ventana
 ventana = Tk()
 ventana.title("Formulario de contacto para ISAUI")
-ventana.geometry("1366x768")
+ventana.geometry("1920x1080")
 ventana.configure(bg="#b39658")
 ventana.resizable(False, False)
 
@@ -144,6 +144,13 @@ btn_trekking.grid(row=1, column=8, padx=10, pady=10)
 
 
 #botón
+
+# ...
+
+
+btn_volver = Button(ventana, text="Volver", borderwidth=2,  bg="#ffffff" ,font=('Calibri', 15), command=ventana.destroy)
+btn_volver.grid(row=4, column=3, padx=10, pady=20,  ipadx=40)
+
 btn_guardar = Button(ventana, text="Guardar", borderwidth=2,  bg="#ffffff" ,font=('Calibri', 15), command=guardar_datos)
 btn_guardar.grid(row=3, column=0, padx=10, pady=20,  ipadx=40)
 
