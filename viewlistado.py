@@ -9,13 +9,13 @@ def abrir_ventana_listado():
     style = ttk.Style()
     style.configure("BigFont.TRadiobutton", font=("Helvetica", 14))
 
-    label_seleccionar_carrera = ttk.Label(root, text="Seleccionar carrera para filtrar", font=("Calibri", 20, "bold"))
+    label_seleccionar_carrera = tk.Label(root, text="Seleccionar carrera para filtrar",bg="#b39658", font=("Calibri", 20, "bold"))
     label_seleccionar_carrera.grid(row=0, column=0, columnspan=4, sticky="nsew", pady=(10, 0))
 
-    frame_superior = tk.Frame(root, bg="gray90")
+    frame_superior = tk.Frame(root)
     frame_superior.grid(row=1, column=0, sticky="nsew", columnspan=3)  # Frame para los radio buttons
 
-    frame_inferior = tk.Frame(root, bg="gray90")
+    frame_inferior = tk.Frame(root, bg="#dbc79c")
     frame_inferior.grid(row=2, column=0, columnspan=4, sticky="nsew")
 
     arbol = ttk.Treeview(frame_inferior, columns=("apellido", "nombre", "dni", "carrera"), show="headings")
