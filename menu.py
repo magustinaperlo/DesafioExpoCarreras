@@ -44,9 +44,9 @@ class MENU(Frame):
 
         contenedor = Frame(frame_menu, bg="white")
         contenedor.pack(expand=True)
-        btn_alta = Button(contenedor, text="Agregar Persona", justify= CENTER, font=('Calibri', 25), bg= "DarkOliveGreen3", activebackground= "DarkOliveGreen2", command=self.comando_alta)
+        btn_alta = Button(contenedor, text="Agregar Persona", justify= CENTER, font=('Calibri', 25), bg= "#bdbcbb", activebackground= "#659c71", command=self.comando_alta)
         btn_alta.grid(row= 2, rowspan=2, column=1 ,columnspan=2, padx= 15, ipadx= 12, ipady= 35)
-        btn_lista = Button(contenedor, text="Ver Personas", justify= CENTER, font=('Calibri', 25), bg= "DarkOrange2", activebackground= "DarkOrange1", command=self.comando_lista)
+        btn_lista = Button(contenedor, text="Ver Personas", justify= CENTER, font=('Calibri', 25), bg= "#bdbcbb", activebackground= "#659c71", command=self.comando_lista)
         btn_lista.grid(row= 2, rowspan=2, column= 4, columnspan=2, padx= 15, ipadx= 32, ipady= 35)
 
 if __name__ == "__main__":  
