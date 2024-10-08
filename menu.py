@@ -29,14 +29,14 @@ class MENU(Frame):
         ventana = Toplevel(self.master)
         ventana.wm_title("Listado de personas")
         ventana.wm_resizable(0,0)
-        entradas = LISTADO(ventana)
+        entradas = LISTADO(ventana, menu=self)
         def on_closing():
             ventana.destroy()
             self.master.deiconify()  # Muestra la ventana principal nuevamente
     
         ventana.protocol("WM_DELETE_WINDOW", on_closing)
         entradas.mainloop()
-        #abrir_listado()
+        
 
     def ventana_menu(self):
         frame_menu = LabelFrame(self, text="Menú", bg="white", font=('Calibri', 20), borderwidth=5)
@@ -48,6 +48,7 @@ class MENU(Frame):
         btn_alta.grid(row= 2, rowspan=2, column=1 ,columnspan=2, padx= 15, ipadx= 12, ipady= 35)
         btn_lista = Button(contenedor, text="Ver Personas", justify= CENTER, font=('Calibri', 25), bg= "#bdbcbb", activebackground= "#659c71", command=self.comando_lista)
         btn_lista.grid(row= 2, rowspan=2, column= 4, columnspan=2, padx= 15, ipadx= 32, ipady= 35)
+    
 
 if __name__ == "__main__":  
     ventana = Tk()

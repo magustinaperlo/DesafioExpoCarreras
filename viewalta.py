@@ -153,8 +153,13 @@ class abrir_alta(Frame):
         btn_guardar = Button(botones, text="Guardar", borderwidth=2,  bg="#ffffff" ,font=('Calibri', 15), command=self.guardar_datos)
         btn_guardar.grid(row=0, column=1, padx=20, pady=20,  ipadx=40)
 
-        btn_volver = Button(botones, text="Volver", borderwidth=2,  bg="#ffffff" ,font=('Calibri', 15), command= self.on_closing)
-        btn_volver.grid(row=0, column=2, padx=20, pady=20, ipadx=40)
+        # Botón de Volver
+        btn_volver = Button(botones, text="Volver", borderwidth=2,  bg="#ffffff" ,font=('Calibri', 15), command=self.volver_a_menu)
+        btn_volver.grid(row=0, column=3, padx=20, pady=20, ipadx=40)
+
+    def volver_a_menu(self):
+        self.master.withdraw()
+        self.master.master.deiconify()  # Muestra la ventana principal nuevamente
 
 """
 ventana = Tk()

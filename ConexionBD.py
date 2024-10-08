@@ -6,7 +6,7 @@ import mysql.connector
 mydb = mysql.connector.connect(
         host="localhost",
         user="root", #PONER SU PROPIO USUARIO
-        password="", #PONER SU PROPIA CLAVE
+        password="123", #PONER SU PROPIA CLAVE
         database="isaui")
 mycursor = mydb.cursor()
 

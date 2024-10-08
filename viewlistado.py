@@ -4,9 +4,10 @@ import mysql.connector
 from ConexionBD import *
 
 class LISTADO(Frame):
-    def __init__(self, master = None):
+    def __init__(self, master = None, menu=None):
         super(). __init__(master, bg="#b39658", width=1366, height=768)
         self.master = master
+        self.menu_principal = menu
         self.pack_propagate(False)
         self.pack(expand=True)
         mycursor.execute("SELECT * FROM carreras")
@@ -73,6 +74,10 @@ class LISTADO(Frame):
         btn_trekking = Radiobutton(frame, text="Guía de Trekking y Guía de montaña", variable=self.variable, value=4, command=self.actualizar_treeview, borderwidth=2, bg="white", font=('Calibri', 13))
         btn_trekking.grid(row=2, column=7, padx=10, pady=10)
 
+
+        btn_volver = Button(self, text="Volver", borderwidth=2,  bg="#ffffff" ,font=('Calibri', 15), command=self.volver_a_menu)
+        btn_volver.grid(row=2, column=0, padx=10, pady=10)
+
         #Treeview
         self.arbol = ttk.Treeview(self, columns=("apellido", "nombre", "dni", "carrera", "telefono", "domicilio", "ciudad", "correo", "instagram"), show="headings")
         self.arbol.grid(row=1, column=0, sticky="nsew", padx=10, pady=10)
@@ -105,6 +110,11 @@ class LISTADO(Frame):
         #Carga los datos iniciales
         self.actualizar_treeview()
 
+    def volver_a_menu(self):
+        self.master.withdraw()
+        self.menu_principal.master.deiconify() 
+
+    
 '''def abrir_listado():
     ventana = Tk()
     ventana.wm_title("Listado de personas")
