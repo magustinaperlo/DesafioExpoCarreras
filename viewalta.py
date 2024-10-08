@@ -145,6 +145,8 @@ class abrir_alta(Frame):
         btn_trekking = Radiobutton(frame, text="Guía de Trekking y Guía de montaña ", variable=self.variable, value=4, borderwidth=2, bg="white", font=('Calibri', 13))
         btn_trekking.grid(row=1, column=8, padx=10, pady=10)
 
+        #Hacer que todos los radio buttons comiencen sin estar marcados.
+        self.variable.set(None)
 
         #botón
         botones = Frame(self, bg="#b39658")
