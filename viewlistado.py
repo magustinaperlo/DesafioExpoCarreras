@@ -1,55 +1,78 @@
 import tkinter as tk
 from tkinter import ttk
+from ConexionBD import *
 
+def abrir_ventana_listado():
+    root = tk.Toplevel()
+    root.title("Listado de personas")
 
+    style = ttk.Style()
+    style.configure("BigFont.TRadiobutton", font=("Helvetica", 14))
 
+    label_seleccionar_carrera = tk.Label(root, text="Seleccionar carrera para filtrar",bg="#b39658", font=("Calibri", 20, "bold"))
+    label_seleccionar_carrera.grid(row=0, column=0, columnspan=4, sticky="nsew", pady=(10, 0))
 
+    frame_superior = tk.Frame(root)
+    frame_superior.grid(row=1, column=0, sticky="nsew", columnspan=3)  # Frame para los radio buttons
 
-root = tk.Tk()
-root.title("Listado de personas")
+    frame_inferior = tk.Frame(root, bg="#dbc79c")
+    frame_inferior.grid(row=2, column=0, columnspan=4, sticky="nsew")
 
-style = ttk.Style()  # crear objeto ttk.Style
-style.configure("BigFont.TRadiobutton", font=("Helvetica", 14))  # configurar estilo de fuente
+    arbol = ttk.Treeview(frame_inferior, columns=("apellido", "nombre", "dni", "carrera"), show="headings")
+    arbol.grid(row=0, column=0, columnspan=4, sticky="nsew")
 
-label_seleccionar_carrera = ttk.Label(root, text="Seleccionar carrera para filtrar", font=("Calibri", 20, "bold"))
-label_seleccionar_carrera.grid(row=0, column=0, sticky="nsew", pady=(10, 0))
+    arbol.heading("apellido", text="Apellido")
+    arbol.heading("nombre", text="Nombre")
+    arbol.heading("dni", text="DNI")
+    arbol.heading("carrera", text="Carrera")
 
-frame_superior = tk.Frame(root, bg="gray90")
-frame_superior.grid(row=1, column=0, sticky="nsew")
+    def mostrar_registros():
+        for row in arbol.get_children():
+            arbol.delete(row)
 
-frame_inferior = tk.Frame(root, bg="gray90")
-frame_inferior.grid(row=2, column=0, sticky="nsew")
+        carrera_seleccionada = variable_de_filtro_carrera.get()
+        print("Carrera seleccionada:", carrera_seleccionada)  # Para verificar qué valor se está utilizando
 
-root.rowconfigure(0, weight=1)
-root.rowconfigure(1, weight=1)
-root.rowconfigure(2, weight=1)
-root.columnconfigure(0, weight=1)
+        if carrera_seleccionada == '7':  # Si se selecciona "Todas"
+            consulta = """
+                SELECT p.apellido, p.nombre, p.dni, c.nombre 
+                FROM personas p
+                JOIN carreras c ON p.id_carreras = c.id_carreras
+            """
+            mycursor.execute(consulta)
+        else:
+            consulta = """
+                SELECT p.apellido, p.nombre, p.dni, c.nombre 
+                FROM personas p
+                JOIN carreras c ON p.id_carreras = c.id_carreras
+                WHERE p.id_carreras = %s
+            """
+            mycursor.execute(consulta, (carrera_seleccionada,))
 
-# botones
-variable_de_filtro_carrera = tk.StringVar()
+        for (apellido, nombre, dni, nombre_carrera) in mycursor:
+            arbol.insert("", "end", values=(apellido, nombre, dni, nombre_carrera))
 
-frame_superior.rowconfigure(0, weight=1)
-frame_superior.rowconfigure(1, weight=1)
-frame_superior.columnconfigure(0, weight=1)
-frame_superior.columnconfigure(1, weight=1)
-frame_superior.columnconfigure(2, weight=1)
+    variable_de_filtro_carrera = tk.StringVar(value='7')  # Valor por defecto para mostrar todas las carreras
 
-for i, carrera in enumerate(["Guía de Turismo", "Técnico en Turismo", "Trekking", "Software", "Enfermería", "Espacio"]):
-    filtro_carrera = ttk.Radiobutton(frame_superior, text=carrera, variable=variable_de_filtro_carrera, value=carrera, style="BigFont.TRadiobutton")
-    row = i // 3  # calculate row index
-    col = i % 3  # calculate column index
-    filtro_carrera.grid(row=row, column=col, sticky="nsew", padx=10, pady=10)  # grid configuration
+    carreras = {
+        1: "Software",
+        2: "Enfermería",
+        3: "Diseño de Espacios",
+        4: "Guía de Trekking",
+        5: "Guía de Turismo",
+        6: "Turismo y Hotelería",
+        7: "Todas"
+    }
 
-arbol = ttk.Treeview(frame_inferior, columns=("apellido", "nombre", "dni", "carrera"), show="headings")
-arbol.grid(row=0, column=0, sticky="nsew")
+    for i, (id_carrera, nombre_carrera) in enumerate(carreras.items()):
+        filtro_carrera = ttk.Radiobutton(frame_superior, text=nombre_carrera, variable=variable_de_filtro_carrera, value=str(id_carrera), style="BigFont.TRadiobutton", command=mostrar_registros)
+        row = i // 3  # calcular el índice de fila
+        col = i % 3  # calcular el índice de columna
+        filtro_carrera.grid(row=row, column=col, sticky="nsew", padx=10, pady=10)  # configuración de grid
 
-arbol.heading("apellido", text="Apellido")
-arbol.heading("nombre", text="Nombre")
-arbol.heading("dni", text="DNI")
-arbol.heading("carrera", text="Carrera")
+    btn_cerrar = tk.Button(frame_inferior, text="Cerrar", command=root.destroy, font=('Calibri', 15), bg="#F8F8FF", width=10)
+    btn_cerrar.grid(row=3, column=3, rowspan=2, padx=10, pady=10, sticky="nsew")
 
-arbol.insert("", "end", values=("Pérez", "Juan", "12345678", "Software"))
-arbol.insert("", "end", values=("González", "María", "87654321", "Enfermería"))
-arbol.insert("", "end", values=("Rodríguez", "Pedro", "34567890", "Técnico en Turismo"))
+    mostrar_registros()
 
-root.mainloop()
+    root.mainloop()
