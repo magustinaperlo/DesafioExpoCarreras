@@ -11,7 +11,6 @@ def abrir_ventana_alta():
     ventana.title("Formulario de contacto para ISAUI")
     ventana.geometry("1366x768")
     ventana.configure(bg="#b39658")
-    ventana.resizable(False, False)
 
     variable = StringVar()
     variable.set(1)

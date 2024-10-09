@@ -9,6 +9,7 @@ class App(tk.Tk):
         self.title("Menú Principal - Sistema de Preinscripción ISAUI")
         self.geometry("450x300+450+300")
         self.config(bg="#b39658")
+        self.resizable(False, False)
 
         btn_alta = tk.Button(self, text="Formulario de Alta", command=self.abrir_alta, font=('Calibri', 15), bg="#ffffff", width=25)
         btn_alta.pack(pady=20)
